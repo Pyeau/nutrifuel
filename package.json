@@ -1,0 +1,27 @@
+{
+  "name": "nutrifuel",
+  "version": "1.0.0",
+  "description": "AI-Powered Nutrition Planning System",
+  "main": "fyp/BAckend/App.py",
+  "scripts": {
+    "start": "npm run backend & npm run frontend",
+    "backend": "cd fyp/BAckend && python App.py",
+    "frontend": "cd fyp/frontend && npm start",
+    "build": "cd fyp/frontend && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "npm install && cd fyp/frontend && npm install"
+  },
+  "keywords": [
+    "nutrition",
+    "meal-planning",
+    "fitness",
+    "AI",
+    "macros"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

@@ -1,0 +1,31 @@
+services:
+  # Backend Flask API
+  - type: web
+    name: nutrifuel-backend
+    runtime: python
+    pythonVersion: 3.11
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn --bind 0.0.0.0:$PORT --workers 3 --timeout 120 fyp.BAckend.App:app"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000
+    disk:
+      name: data-volume
+      mountPath: /data
+      sizeGB: 5
+
+  # Frontend React App
+  - type: web
+    name: nutrifuel-frontend
+    runtime: node
+    nodeVersion: 18
+    buildCommand: "cd fyp/frontend && npm install && npm run build"
+    startCommand: "cd fyp/frontend && npx serve -s build -l 3000"
+    envVars:
+      - key: REACT_APP_API_URL
+        value: "https://nutrifuel-backend.onrender.com"
+    routes:
+      - path: /
+        service: nutrifuel-frontend
