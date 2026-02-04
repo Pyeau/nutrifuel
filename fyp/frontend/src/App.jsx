@@ -681,9 +681,9 @@ const App = () => {
                               <button
                                 onClick={() => handleReplaceFood(replacingMealIndex, food.name)}
                                 disabled={replacementLoading}
-                                className="mt-3 w-full py-2 px-3 bg-orange-500 hover:bg-orange-600 disabled:bg-slate-300 text-white font-bold text-sm rounded-lg transition-colors flex items-center justify-center gap-2"
+                                className="mt-3 w-full py-3 px-4 bg-orange-500 hover:bg-orange-600 disabled:bg-slate-300 text-white font-bold text-base rounded-lg transition-colors flex items-center justify-center gap-2"
                               >
-                                <Replace className="w-4 h-4" />
+                                <Replace className="w-5 h-5" />
                                 Replace
                               </button>
                             )}
@@ -696,9 +696,9 @@ const App = () => {
                                     key={mealIdx}
                                     onClick={() => setReplacingMealIndex(mealIdx)}
                                     title={`Replace this food with ${food.name}`}
-                                    className="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1"
+                                    className="flex-1 py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-lg transition-colors flex items-center justify-center gap-2"
                                   >
-                                    <Replace className="w-3 h-3" />
+                                    <Replace className="w-4 h-4" />
                                     {meal.type.slice(0, 3)}
                                   </button>
                                 ))}
