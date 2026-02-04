@@ -24,14 +24,10 @@ services:
       sizeGB: 5
 
   # Frontend React App
-  - type: web
+  - type: static
     name: nutrifuel-frontend
-    runtime: node
-    nodeVersion: 18
     buildCommand: "cd fyp/frontend && npm install --legacy-peer-deps && npm run build"
-    startCommand: "cd fyp/frontend && npx serve -s build -l $PORT"
+    staticPublishPath: fyp/frontend/build
     envVars:
       - key: REACT_APP_API_URL
         value: "https://nutrifuel-backend.onrender.com"
-      - key: PORT
-        value: 10000
