@@ -181,18 +181,25 @@ def get_recommendations_by_cluster(food_db, predicted_plan, exclude_names=None, 
         random.shuffle(candidates)
         return candidates
 
+
     # 3. Select Main 3 Meals
     meals = []
     selected_names = set(exclude_names)
     
     for m_type in ["Breakfast", "Lunch", "Dinner"]:
-        candidates = get_candidates(base_pool, meal_calories[m_type], meal_time_filter=m_type)
+        # Filter out already selected foods
+        available_pool = base_pool[~base_pool['meal_name'].isin(selected_names)]
+        if available_pool.empty:
+            available_pool = base_pool  # Fallback if all foods already selected
+        
+        candidates = get_candidates(available_pool, meal_calories[m_type], meal_time_filter=m_type)
         
         # Pick one that hasn't been used
         selection = next((c for c in candidates if c['meal_name'] not in selected_names), None)
         
         # If all used, pick random
-        if not selection and candidates: selection = random.choice(candidates)
+        if not selection and candidates: 
+            selection = random.choice(candidates)
         
         if selection:
             selected_names.add(selection['meal_name'])
@@ -207,6 +214,7 @@ def get_recommendations_by_cluster(food_db, predicted_plan, exclude_names=None, 
                 "Fat_Num": selection['Fats'],
                 "Cluster_Name": predicted_plan
             })
+
 
     # 4. GAP FILLING: Check Total vs Target
     current_total = sum(m['Cal_Num'] for m in meals)
