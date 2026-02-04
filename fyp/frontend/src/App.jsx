@@ -27,7 +27,7 @@ const App = () => {
   const [replacingMealIndex, setReplacingMealIndex] = useState(null);
   const [replacementLoading, setReplacementLoading] = useState(false);
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://nutrifuel.onrender.com';
 
   // --- API HANDLER (Connected to Flask) ---
   const handleGenerate = async () => {
@@ -89,7 +89,7 @@ const App = () => {
       }
 
       const data = await response.json();
-      
+
       if (data.success) {
         // Update results with the new meals and totals
         setResults({
@@ -644,11 +644,10 @@ const App = () => {
                       {results.clusterFoods
                         .filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()))
                         .map((food, idx) => (
-                          <div key={idx} className={`relative p-4 rounded-2xl border transition-all flex flex-col justify-between group/card bg-white overflow-hidden ${
-                            replacingMealIndex !== null 
-                              ? 'border-stone-200 hover:border-orange-400 hover:bg-orange-50 cursor-pointer' 
+                          <div key={idx} className={`relative p-4 rounded-2xl border transition-all flex flex-col justify-between group/card bg-white overflow-hidden ${replacingMealIndex !== null
+                              ? 'border-stone-200 hover:border-orange-400 hover:bg-orange-50 cursor-pointer'
                               : 'border-stone-100 hover:border-orange-200 hover:bg-orange-50/50'
-                          }`}>
+                            }`}>
                             <div className="overflow-hidden z-10">
                               <p className="font-bold text-slate-800 text-sm truncate pr-2 capitalize" title={food.name}>{food.name}</p>
                               <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">{food.type}</p>
