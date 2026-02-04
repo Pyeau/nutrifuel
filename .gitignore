@@ -50,6 +50,10 @@ Thumbs.db
 *.csv
 *.xlsx
 
+# EXCEPTIONS: Required files for deployment
+!fyp/BAckend/improved_food_database.csv
+!fyp/BAckend/meal_plan_model.joblib
+
 # Build
 build/
 dist/
