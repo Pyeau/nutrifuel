@@ -18,7 +18,8 @@ CORS(app, resources={
             "http://localhost:3000",
             "http://localhost:5000",
             os.getenv("FRONTEND_URL", "http://localhost:3000"),
-            "https://nutrifuel-frontend.onrender.com"
+            "https://nutrifuel-frontend.onrender.com",
+            "https://nutrifuel-1.onrender.com"  # Actual frontend URL
         ],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type"]
