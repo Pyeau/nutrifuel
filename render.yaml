@@ -29,10 +29,9 @@ services:
     runtime: node
     nodeVersion: 18
     buildCommand: "cd fyp/frontend && npm install --legacy-peer-deps && npm run build"
-    startCommand: "cd fyp/frontend && npx serve -s build -l 3000"
+    startCommand: "cd fyp/frontend && npx serve -s build -l $PORT"
     envVars:
       - key: REACT_APP_API_URL
         value: "https://nutrifuel-backend.onrender.com"
-    routes:
-      - path: /
-        service: nutrifuel-frontend
+      - key: PORT
+        value: 10000
